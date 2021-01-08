@@ -1,7 +1,7 @@
 ![You can get stuff like this](img/1.gif)
 _You can get stuff like this with Network Policies..._
 
-# Kubernetes Network Policy Recipes
+# OpenShift Network Policy Recipes
 
 This repository contains various use cases of Kubernetes
 [Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/)
@@ -17,22 +17,22 @@ If you are not familiar with Network Policies at all, I recommend reading my
 [Securing Kubernetes Cluster Networking](https://ahmet.im/blog/kubernetes-network-policy/)
 article first.
 
-### Before you begin
+## Before you begin
 
-> I really recommend [watching my KubeCon talk on Network
-Policies](https://www.youtube.com/watch?v=3gGpMmYeEO8) if you want to get a
-good understanding of this feature. It will help you understand this repo
-better.
+> It is really recommended [to watch this KubeCon talk on Network
+Policies](https://www.youtube.com/watch?v=3gGpMmYeEO8) for a deeper
+understanding of this feature. It will also help you understand this
+repo better.
 
 - [Create a cluster](00-create-cluster.md)
 
-### Basics
+## Basics
 
 - [DENY all traffic to an application](01-deny-all-traffic-to-an-application.md)
 - [LIMIT traffic to an application](02-limit-traffic-to-an-application.md)
 - [ALLOW all traffic to an application](02a-allow-all-traffic-to-an-application.md)
 
-### Namespaces
+## Namespaces
 
 - [DENY all non-whitelisted traffic in the current namespace](03-deny-all-non-whitelisted-traffic-in-the-namespace.md)
 - [DENY all traffic from other namespaces](04-deny-traffic-from-other-namespaces.md) (a.k.a. LIMIT access to the current namespace)
@@ -40,16 +40,16 @@ better.
 - [ALLOW all traffic from a namespace](06-allow-traffic-from-a-namespace.md)
 - [ALLOW traffic from some pods in another namespace](07-allow-traffic-from-some-pods-in-another-namespace.md)
 
-### Serving External Traffic
+## Serving External Traffic
 
 - [ALLOW traffic from external clients](08-allow-external-traffic.md)
 
-### Advanced
+## Advanced
 
 - [ALLOW traffic only to certain port numbers of an application](09-allow-traffic-only-to-a-port.md)
 - [ALLOW traffic from apps using multiple selectors](10-allowing-traffic-with-multiple-selectors.md)
 
-### Controlling Outbound (Egress) Traffic 🔥🆕🔥
+## Controlling Outbound (Egress) Traffic 🔥🆕🔥
 
 - [DENY egress traffic from an application](11-deny-egress-traffic-from-an-application.md)
 - [DENY all non-whitelisted egress traffic in a namespace](12-deny-all-non-whitelisted-traffic-from-the-namespace.md)
@@ -59,12 +59,14 @@ better.
 
 -----
 
-##### Author
+### Authors
 
-Created by Ahmet Alp Balkan ([@ahmetb](https://twitter.com/ahmetb)).
+Updates and OpenShift content by Jared Burck ([@JaredBurck](https://twitter.com/jaredburck)) and Red Hat CoP ([@RedHatCoP](https://twitter.com/RedHatCoP)).
+
+Originally created by Ahmet Alp Balkan ([@ahmetb](https://twitter.com/ahmetb)).
 
 Copyright 2017, Google Inc. Distributed under Apache License Version 2.0 ,see [LICENSE](LICENSE) for details.
 
-Disclaimer: This is not an official Google product.
+Disclaimer: This is not an official Google or Red Hat product.
 
 ![Stargazers over time](https://starcharts.herokuapp.com/ahmetb/kubernetes-networkpolicy-tutorial.svg)
