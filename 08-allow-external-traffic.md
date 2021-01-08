@@ -4,13 +4,14 @@ This Network Policy enables external clients from the public Internet directly
 or via a Load Balancer to access to the pod.
 
 **Use Cases:**
+
 - You need to expose the pods to the public Internet in a namespace [denying all
   non-whitelisted
   traffic](03-deny-all-non-whitelisted-traffic-in-the-namespace.md)
 
 ![Diagram of ALLOW traffic from external clients policy](img/8.gif)
 
-### Example
+## Example
 
 Run a web server and expose it to the internet with a Load Balancer:
 
@@ -23,7 +24,6 @@ oc expose pod/web --type=LoadBalancer
 
 Wait until an EXTERNAL-IP appears on `oc get service` output. Visit the
 `http://[EXTERNAL-IP]` on your browser and verify it is accessible.
-
 
 The following manifest allows traffic from all sources (both internal from the
 cluster and external). Save it to `web-allow-external.yaml` and apply to the
@@ -68,6 +68,8 @@ such as:
 
 ### Cleanup
 
-    oc delete pod web
-    oc delete service web
-    oc delete networkpolicy web-allow-external
+```sh
+oc delete pod web
+oc delete service web
+oc delete networkpolicy web-allow-external
+```

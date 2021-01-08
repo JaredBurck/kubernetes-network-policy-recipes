@@ -4,17 +4,20 @@ You can create Networking Policies allowing traffic from only
 certain Pods.
 
 **Use Case:**
+
 - Restrict traffic to a service only to other microservices that need
   to use it.
 - Restrict connections to a database only to the application using it.
 
 ![Diagram of LIMIT traffic to an application policy](img/2.gif)
 
-### Example
+## Example
 
 Suppose your application is a REST API server, marked with labels `app=bookstore` and `role=api`:
 
-    oc run --generator=run-pod/v1 apiserver --image=nginx --labels app=bookstore,role=api --expose --port 80
+```sh
+oc run --generator=run-pod/v1 apiserver --image=nginx --labels app=bookstore,role=api --expose --port 80
+```
 
 Save the following NetworkPolicy to `api-allow.yaml` to restrict the access
 only to other pods (e.g. other microservices) running with label `app=bookstore`:
@@ -45,24 +48,28 @@ networkpolicy "api-allow" created
 
 Test the Network Policy is **blocking** the traffic, by running a Pod without the `app=bookstore` label:
 
-    $ oc run --generator=run-pod/v1 test-$RANDOM --rm -i -t --image=alpine -- sh
-    / # wget -qO- --timeout=2 http://apiserver
-    wget: download timed out
+```sh
+$ oc run --generator=run-pod/v1 test-$RANDOM --rm -i -t --image=alpine -- sh
+/ # wget -qO- --timeout=2 http://apiserver
+wget: download timed out
+```
 
 Traffic is blocked!
 
 Test the Network Policy is **allowing** the traffic, by running a Pod with the `app=bookstore` label:
 
-    $ oc run --generator=run-pod/v1 test-$RANDOM --rm -i -t --image=alpine --labels app=bookstore,role=frontend -- sh
-    / # wget -qO- --timeout=2 http://apiserver
-    <!DOCTYPE html>
-    <html><head>
+```sh
+$ oc run --generator=run-pod/v1 test-$RANDOM --rm -i -t --image=alpine --labels app=bookstore,role=frontend -- sh
+/ # wget -qO- --timeout=2 http://apiserver
+<!DOCTYPE html>
+<html><head>
+```
 
 Traffic is allowed.
 
 ### Cleanup
 
-```
+```sh
 oc delete pod apiserver
 oc delete service apiserver
 oc delete networkpolicy api-allow

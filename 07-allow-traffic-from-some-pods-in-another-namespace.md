@@ -11,13 +11,17 @@ deploy it to make sure it is working correctly.
 
 Start a `web` application:
 
-    oc run --generator=run-pod/v1 web --image=nginx \
-        --labels=app=web --expose --port 80
+```sh
+oc run --generator=run-pod/v1 web --image=nginx \
+    --labels=app=web --expose --port 80
+```
 
 Create a `other` namespace and label it:
 
-    oc create namespace other
-    oc label namespace/other team=operations
+```sh
+oc create namespace other
+oc label namespace/other team=operations
+```
 
 The following manifest restricts traffic to only pods with label `type=monitoring` in namespaces labelled `team=operations`. Save it to `web-allow-all-ns-monitoring.yaml` and apply to the cluster:
 
@@ -46,7 +50,7 @@ $ oc apply -f web-allow-all-ns-monitoring.yaml
 networkpolicy.networking.k8s.io/web-allow-all-ns-monitoring created
 ```
 
-## Try it out
+### Try it out
 
 Query this web server from `default` namespace, *without* labelling the application `type=monitoring`, observe it is **blocked**:
 
@@ -94,9 +98,11 @@ If you don't see a command prompt, try pressing enter.
 (traffic allowed)
 ```
 
-## Cleanup
+### Cleanup
 
-    oc delete networkpolicy web-allow-all-ns-monitoring
-    oc delete namespace other
-    oc delete pod web
-    oc delete service web
+```sh
+oc delete networkpolicy web-allow-all-ns-monitoring
+oc delete namespace other
+oc delete pod web
+oc delete service web
+```

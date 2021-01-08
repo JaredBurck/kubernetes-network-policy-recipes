@@ -6,27 +6,32 @@ ingress rules, the rule applies to all ports.
 
 A port may be either a numerical or named port on a pod.
 
-**Use Cases**
+**Use Cases** &nbsp;
+
 - Allow monitoring system to collect the metrics by querying the diagnostics
   port of your application, without giving it access to the rest of the
   application.
 
 ![Diagram of ALLOW traffic only to a port of an application policy](img/9.gif)
 
-### Example
+## Example
 
 Run a web server deployment called `apiserver`:
 
-    oc run --generator=run-pod/v1 apiserver --image=ahmet/app-on-two-ports --labels=app=apiserver
+```sh
+oc run --generator=run-pod/v1 apiserver --image=ahmet/app-on-two-ports --labels=app=apiserver
+```
 
 This application returns a hello response to requests on `http://:8000/`
 and a monitoring metrics response on `http://:5000/metrics`.
 
 Expose the deployment as Service, map 8000 to 8001, map 5000 to 5001.
 
-    oc create service clusterip apiserver \
-        --tcp 8001:8000 \
-        --tcp 5001:5000
+```sh
+oc create service clusterip apiserver \
+    --tcp 8001:8000 \
+    --tcp 5001:5000
+```
 
 > ![#c5f015](https://placehold.it/15/c5f015/000000?text=+) **NOTE:**
 > Network Policies will not know the port numbers you exposed the application,
@@ -85,7 +90,6 @@ wget: download timed out
 Run a pod with `role=monitoring` label, observe the traffic to
 port 5000 is allowed, but port 8000 is still not accessible:
 
-
 ```sh
 $ oc run --generator=run-pod/v1 test-$RANDOM --labels=role=monitoring --rm -i -t --image=alpine -- sh
 / # wget -qO- --timeout=2 http://apiserver:8001
@@ -99,6 +103,8 @@ go.cpus=1
 
 ### Cleanup
 
-    oc delete pod apiserver
-    oc delete service apiserver
-    oc delete networkpolicy api-allow-5000
+```sh
+oc delete pod apiserver
+oc delete service apiserver
+oc delete networkpolicy api-allow-5000
+```

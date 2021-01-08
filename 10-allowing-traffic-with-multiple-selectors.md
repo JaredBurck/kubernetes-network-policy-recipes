@@ -2,16 +2,19 @@
 
 NetworkPolicy lets you define multiple pod selectors to allow traffic from.
 
-**Use Case**
+**Use Case** &nbsp;
+
 - Create a combined NetworkPolicy that has the list of microservices that
   are allowed to connect to an application.
 
-### Example
+## Example
 
 Run a Redis database on your cluster:
 
-    oc run --generator=run-pod/v1 db --image=redis:4 --port 6379 --expose \
-        --labels app=bookstore,role=db
+```sh
+oc run --generator=run-pod/v1 db --image=redis:4 --port 6379 --expose \
+    --labels app=bookstore,role=db
+```
 
 Suppose you would like to share this Redis database between multiple
 microservices:
@@ -88,6 +91,8 @@ nc: db (10.59.252.83:6379): Operation timed out
 
 ### Cleanup
 
-    oc delete pod db
-    oc delete service db
-    oc delete networkpolicy redis-allow-services
+```sh
+oc delete pod db
+oc delete service db
+oc delete networkpolicy redis-allow-services
+```

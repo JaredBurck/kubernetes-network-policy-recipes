@@ -38,14 +38,14 @@ spec:
 
 Few remarks about this policy:
 
-* This policy applies to pods with `app=foo` and in Egress (outbound) direction.
-* Similar to [DENY egress traffic from an
+- This policy applies to pods with `app=foo` and in Egress (outbound) direction.
+- Similar to [DENY egress traffic from an
   application](11-deny-egress-traffic-from-an-application.md) example, this policy
   allows all outbound traffic on ports 53/udp and 53/tcp for DNS resolution.
-* `to:` specifies an empty `namespaceSelector`. This will select **all pods in
+- `to:` specifies an empty `namespaceSelector`. This will select **all pods in
   all namespaces**, so the outbound traffic to pods in the cluster will be
   allowed.
-  * And since they are not listed, traffic to the IP addresses outside the cluster
+  - And since they are not listed, traffic to the IP addresses outside the cluster
     are denied.
 
 Now apply it to the cluster:
@@ -59,8 +59,10 @@ networkpolicy "foo-deny-egress" created
 
 Run a web application named `web`:
 
-    oc run --generator=run-pod/v1 web --image=nginx --port 80 --expose \
-        --labels app=web
+```sh
+oc run --generator=run-pod/v1 web --image=nginx --port 80 --expose \
+    --labels app=web
+```
 
 Run a pod with label `app=foo`. The policy will be enforced on this pod:
 

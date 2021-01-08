@@ -4,6 +4,7 @@ This NetworkPolicy will drop all traffic to pods of an
 application, selected using Pod Selectors.
 
 **Use Cases:**
+
 - It’s very common: To start whitelisting the traffic using
   Network Policies, first you need to blacklist the traffic
   using this policy.
@@ -13,20 +14,24 @@ application, selected using Pod Selectors.
   other Pods.
 ![Diagram for DENY all traffic to an application policy](img/1.gif)
 
-### Example
+## Example
 
 Run a nginx Pod with labels `app=web`  and expose it at port 80:
 
-    oc run --generator=run-pod/v1 web --image=nginx --labels app=web --expose --port 80
+```sh
+oc run --generator=run-pod/v1 web --image=nginx --labels app=web --expose --port 80
+```
 
 Run a temporary Pod and make a request to `web` Service:
 
-    $ oc run --generator=run-pod/v1 --rm -i -t --image=alpine test-$RANDOM -- sh
-    / # wget -qO- http://web
-    <!DOCTYPE html>
-    <html>
-    <head>
-    ...
+```sh
+$ oc run --generator=run-pod/v1 --rm -i -t --image=alpine test-$RANDOM -- sh
+/ # wget -qO- http://web
+<!DOCTYPE html>
+<html>
+<head>
+...
+```
 
 It works, now save the following manifest to `web-deny-all.yaml`,
 then apply to the cluster:
@@ -52,9 +57,11 @@ networkpolicy "web-deny-all" created
 
 Run a test container again, and try to query web:
 
-    $ oc run --generator=run-pod/v1 --rm -i -t --image=alpine test-$RANDOM -- sh
-    / # wget -qO- --timeout=2 http://web
-    wget: download timed out
+```sh
+$ oc run --generator=run-pod/v1 --rm -i -t --image=alpine test-$RANDOM -- sh
+/ # wget -qO- --timeout=2 http://web
+wget: download timed out
+```
 
 Traffic dropped!
 

@@ -1,4 +1,4 @@
-## DENY all traffic from other namespaces
+# DENY all traffic from other namespaces
 
 __(_a.k.a  LIMIT access to the current namespace_)__
 
@@ -6,7 +6,8 @@ You can configure a NetworkPolicy to **deny all the traffic from other
 namespaces while allowing all the traffic coming from the same namespace** the
 pod deployed to.
 
-**Use Cases**
+**Use Cases** &nbsp;
+
 - You do not want deployments in `test` namespace to accidentally
   send traffic to other services or databases in `prod` namespace.
 - You host applications from different customers in separate Kubernetes
@@ -15,7 +16,7 @@ pod deployed to.
 
 ![Diagram of DENY all traffic from other namespaces policy](img/4.gif)
 
-### Example
+## Example
 
 Create a new namespace called `secondary` and start a web service:
 
@@ -56,7 +57,7 @@ Note a few things about this manifest:
 - it allows traffic from ALL pods in the `secondary` namespace, as
    `spec.ingress.from.podSelector` is empty and therefore selects all pods.
 
-## Try it out
+### Try it out
 
 Query this web service from the `default` namespace:
 

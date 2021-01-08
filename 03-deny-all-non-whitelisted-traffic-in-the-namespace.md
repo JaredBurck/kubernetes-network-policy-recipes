@@ -45,4 +45,6 @@ networkpolicy "default-deny-all" created
 
 ### Cleanup
 
-    oc delete networkpolicy default-deny-all
+```sh
+oc delete networkpolicy default-deny-all
+```

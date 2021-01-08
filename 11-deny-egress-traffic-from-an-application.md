@@ -15,8 +15,10 @@
 
 Run a web application with `app=web` label:
 
-    oc run --generator=run-pod/v1 web --image=nginx --port 80 --expose \
-        --labels app=web
+```sh
+oc run --generator=run-pod/v1 web --image=nginx --port 80 --expose \
+    --labels app=web
+```
 
 Save the following to `foo-deny-egress.yaml` and apply to the cluster:
 
@@ -35,6 +37,7 @@ spec:
 ```
 
 Remarks about this manifest file:
+
 - `podSelector` matches to `app=foo` pods
 - `policyTypes: ["egress"]` indicates that this policy enforces policies for the
   egress (outbound) traffic.
@@ -115,7 +118,7 @@ but any host that serves traffic over port `53`.
 
 ## Cleanup
 
-```
+```sh
 oc delete pod,service web
 oc delete networkpolicy foo-deny-egress
 ```

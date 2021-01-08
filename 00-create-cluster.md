@@ -1,4 +1,4 @@
-## Create a cluster
+# Create a cluster
 
 Most of the Kubernetes installation methods out there do not get you a cluster
 with [Network
@@ -6,23 +6,18 @@ Policies](https://kubernetes.io/docs/concepts/services-networking/network-polici
 feature. You manually need to install and configure a Network Policy provider
 such as Weave Net or Calico.
 
-**[Google Kubernetes Engine (GKE)][gke]** easily lets you get a Kubernetes
-cluster with Network Policies feature. You do not need to install a network
-policy provider yourself, as GKE configures Calico as the networking provider
-for you. (This feature is generally available as of GKE v1.10.)
+**[OpenShift Container Platform (OCP)][ocp]** easily lets you get a Red Hat OpenShift 4 cluster with Network Policies feature. You do not need to install a network policy provider yourself, as OpenShift configures the OpenShift SDN as the networking provider for you. (This feature is generally available as of OCP v3.6.)
 
-To create a GKE cluster named `np` with Network Policy feature enabled, run:
+To create a OpenShift cluster named `ocp4` with Network Policy feature enabled, run:
 
-    gcloud beta container clusters create np \
-        --enable-network-policy \
-        --zone us-central1-b
+    openshift-install create cluster --dir=ocp4-sbx
 
-This will create a 3-node Kubernetes cluster on Kubernetes Engine and turn on
-the Network Policy feature.
+This will create a 6-node OpenShift cluster on your cloud of choice with Network
+Policy feature enabled and no policies applied out of the box allowing all
+communications.
 
 Once you complete this tutorial, you can delete the cluster by running:
 
-    gcloud container clusters delete -q --zone us-central1-b np
+    openshift-install delete cluster --dir=np-lab
 
-
-[gke]: https://cloud.google.com/kubernetes-engine/
+[ocp]: https://www.openshift.com/try

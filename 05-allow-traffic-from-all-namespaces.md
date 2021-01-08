@@ -4,6 +4,7 @@ This NetworkPolicy will allow traffic from all pods in all namespaces
 to a particular application.
 
 **Use Case:**
+
 - You have a common service or a database which is used by deployments in
   different namespaces.
 
@@ -13,7 +14,7 @@ non-whitelisted traffic to all pods in the namespace](03-deny-all-non-whiteliste
 
 ![Diagram of  ALLOW traffic to an application from all namespaces policy](img/5.gif)
 
-### Example
+## Example
 
 Start a web service on `default` namespace:
 
@@ -63,7 +64,6 @@ Note a few things about this NetworkPolicy manifest:
 >
 > However, prefer the syntax in the full manifest clear expression of intent.
 
-
 ### Try it out
 
 Create a new namespace called `secondary` and query this web service in the `default` namespace:
@@ -82,7 +82,9 @@ Similarly, it also works if you query it from any pod deployed to `bar`.
 
 ### Cleanup
 
-    oc delete pod web -n default
-    oc delete service web -n default
-    oc delete networkpolicy web-allow-all-namespaces -n default
-    oc delete namespace secondary
+```sh
+oc delete pod web -n default
+oc delete service web -n default
+oc delete networkpolicy web-allow-all-namespaces -n default
+oc delete namespace secondary
+```

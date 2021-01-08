@@ -5,6 +5,7 @@ namespaces](05-allow-traffic-from-all-namespaces.md) but shows how you can
 choose particular namespaces.
 
 **Use Case:**
+
 - Restrict traffic to a production database only to namespaces where production
   workloads are deployed.
 - Enable monitoring tools deployed to a particular namespace to scrape metrics
@@ -12,12 +13,14 @@ choose particular namespaces.
 
 ![Diagram of ALLOW all traffic from a namespace policy](img/6.gif)
 
-### Example
+## Example
 
 Run a web server in the `default` namespace:
 
-    oc run --generator=run-pod/v1 web --image=nginx \
-        --labels=app=web --expose --port 80
+```sh
+oc run --generator=run-pod/v1 web --image=nginx \
+    --labels=app=web --expose --port 80
+```
 
 Now, suppose you have these three namespaces:
 
@@ -90,7 +93,9 @@ If you don't see a command prompt, try pressing enter.
 
 ### Cleanup
 
-    oc delete networkpolicy web-allow-prod
-    oc delete pod web
-    oc delete service web
-    oc delete namespace {prod,dev}
+```sh
+oc delete networkpolicy web-allow-prod
+oc delete pod web
+oc delete service web
+oc delete namespace {prod,dev}
+```

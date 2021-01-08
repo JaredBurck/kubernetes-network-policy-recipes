@@ -27,7 +27,6 @@ spec:
   egress: []
 ```
 
-
 Note a few things about this manifest:
 
 - `namespace: default` deploy this policy to the `default` namespace.
@@ -45,4 +44,6 @@ networkpolicy "default-deny-all-egress" created
 
 ### Cleanup
 
-    oc delete networkpolicy default-deny-all-egress
+```sh
+oc delete networkpolicy default-deny-all-egress
+```

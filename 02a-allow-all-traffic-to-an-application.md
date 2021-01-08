@@ -12,8 +12,10 @@ void, and allow all traffic to it from its namespace and other namespaces.
 
 Start a `web` application:
 
-    oc run --generator=run-pod/v1 web --image=nginx \
-        --labels=app=web --expose --port 80
+```sh
+oc run --generator=run-pod/v1 web --image=nginx \
+    --labels=app=web --expose --port 80
+```
 
 Save the following manifest to `web-allow-all.yaml`:
 
@@ -39,9 +41,11 @@ A few remarks about this manifest:
   - Empty ingress rule (`{}`) allows traffic from all pods in the current
     namespace, as well as other namespaces. It corresponds to:
 
-        - from:
-            podSelector: {}
-            namespaceSelector: {}
+    ```yaml
+    - from:
+        podSelector: {}
+        namespaceSelector: {}
+    ```
 
 Now apply it to the cluster:
 
@@ -56,11 +60,13 @@ that applying `web-allow-all` will make the `web-deny-all` void.
 
 ### Try it out
 
+```sh
     $ oc run --generator=run-pod/v1 test-$RANDOM --rm -i -t --image=alpine -- sh
     / # wget -qO- --timeout=2 http://web
     <!DOCTYPE html>
     <html><head>
     ...
+```
 
 Traffic is allowed.
 
