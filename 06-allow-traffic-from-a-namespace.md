@@ -16,7 +16,7 @@ choose particular namespaces.
 
 Run a web server in the `default` namespace:
 
-    kubectl run --generator=run-pod/v1 web --image=nginx \
+    oc run --generator=run-pod/v1 web --image=nginx \
         --labels=app=web --expose --port 80
 
 Now, suppose you have these three namespaces:
@@ -28,13 +28,13 @@ Now, suppose you have these three namespaces:
 Create the `prod` and `dev` namespaces:
 
 ```sh
-kubectl create namespace dev
-kubectl label namespace/dev purpose=testing
+oc create namespace dev
+oc label namespace/dev purpose=testing
 ```
 
 ```sh
-kubectl create namespace prod
-kubectl label namespace/prod purpose=production
+oc create namespace prod
+oc label namespace/prod purpose=production
 ```
 
 The following manifest restricts traffic to only pods in namespaces
@@ -58,7 +58,7 @@ spec:
 ```
 
 ```sh
-$ kubectl apply -f web-allow-prod.yaml
+$ oc apply -f web-allow-prod.yaml
 networkpolicy "web-allow-prod" created
 ```
 
@@ -67,7 +67,7 @@ networkpolicy "web-allow-prod" created
 Query this web server from `dev` namespace, observe it is blocked:
 
 ```sh
-$ kubectl run --generator=run-pod/v1 test-$RANDOM --namespace=dev --rm -i -t --image=alpine -- sh
+$ oc run --generator=run-pod/v1 test-$RANDOM --namespace=dev --rm -i -t --image=alpine -- sh
 If you don't see a command prompt, try pressing enter.
 / # wget -qO- --timeout=2 http://web.default
 wget: download timed out
@@ -78,7 +78,7 @@ wget: download timed out
 Query it from `prod` namespace, observe it is allowed:
 
 ```sh
-$ kubectl run --generator=run-pod/v1 test-$RANDOM --namespace=prod --rm -i -t --image=alpine -- sh
+$ oc run --generator=run-pod/v1 test-$RANDOM --namespace=prod --rm -i -t --image=alpine -- sh
 If you don't see a command prompt, try pressing enter.
 / # wget -qO- --timeout=2 http://web.default
 <!DOCTYPE html>
@@ -90,7 +90,7 @@ If you don't see a command prompt, try pressing enter.
 
 ### Cleanup
 
-    kubectl delete networkpolicy web-allow-prod
-    kubectl delete pod web
-    kubectl delete service web
-    kubectl delete namespace {prod,dev}
+    oc delete networkpolicy web-allow-prod
+    oc delete pod web
+    oc delete service web
+    oc delete namespace {prod,dev}

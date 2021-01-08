@@ -39,10 +39,10 @@ Note a few things about this manifest:
 Save this manifest to `default-deny-all.yaml` and apply:
 
 ```sh
-$ kubectl apply -f default-deny-all.yaml
+$ oc apply -f default-deny-all.yaml
 networkpolicy "default-deny-all" created
 ```
 
 ### Cleanup
 
-    kubectl delete networkpolicy default-deny-all
+    oc delete networkpolicy default-deny-all

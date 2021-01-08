@@ -39,10 +39,10 @@ Note a few things about this manifest:
 Save this manifest to `default-deny-all-egress.yaml` and apply:
 
 ```sh
-$ kubectl apply -f default-deny-all-egress.yaml
+$ oc apply -f default-deny-all-egress.yaml
 networkpolicy "default-deny-all-egress" created
 ```
 
 ### Cleanup
 
-    kubectl delete networkpolicy default-deny-all-egress
+    oc delete networkpolicy default-deny-all-egress

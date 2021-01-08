@@ -18,7 +18,7 @@ non-whitelisted traffic to all pods in the namespace](03-deny-all-non-whiteliste
 Start a web service on `default` namespace:
 
 ```sh
-kubectl run --generator=run-pod/v1 web --image=nginx \
+oc run --generator=run-pod/v1 web --image=nginx \
     --namespace default \
     --labels=app=web --expose --port 80
 ```
@@ -42,7 +42,7 @@ spec:
 ```
 
 ```sh
-$ kubectl apply -f web-allow-all-namespaces.yaml
+$ oc apply -f web-allow-all-namespaces.yaml
 networkpolicy "web-allow-all-namespaces" created"
 ```
 
@@ -69,9 +69,9 @@ Note a few things about this NetworkPolicy manifest:
 Create a new namespace called `secondary` and query this web service in the `default` namespace:
 
 ```sh
-$ kubectl create namespace secondary
+$ oc create namespace secondary
 
-$ kubectl run --generator=run-pod/v1 test-$RANDOM --namespace=secondary --rm -i -t --image=alpine -- sh
+$ oc run --generator=run-pod/v1 test-$RANDOM --namespace=secondary --rm -i -t --image=alpine -- sh
 / # wget -qO- --timeout=2 http://web.default
 <!DOCTYPE html>
 <html>
@@ -82,7 +82,7 @@ Similarly, it also works if you query it from any pod deployed to `bar`.
 
 ### Cleanup
 
-    kubectl delete pod web -n default
-    kubectl delete service web -n default
-    kubectl delete networkpolicy web-allow-all-namespaces -n default
-    kubectl delete namespace secondary
+    oc delete pod web -n default
+    oc delete service web -n default
+    oc delete networkpolicy web-allow-all-namespaces -n default
+    oc delete namespace secondary

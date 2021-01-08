@@ -10,7 +10,7 @@ NetworkPolicy lets you define multiple pod selectors to allow traffic from.
 
 Run a Redis database on your cluster:
 
-    kubectl run --generator=run-pod/v1 db --image=redis:4 --port 6379 --expose \
+    oc run --generator=run-pod/v1 db --image=redis:4 --port 6379 --expose \
         --labels app=bookstore,role=db
 
 Suppose you would like to share this Redis database between multiple
@@ -52,7 +52,7 @@ spec:
 ```
 
 ```sh
-$ kubectl apply -f redis-allow-services.yaml
+$ oc apply -f redis-allow-services.yaml
 networkpolicy "redis-allow-services" created
 ```
 
@@ -67,7 +67,7 @@ Note that:
 Run a pod that looks like the "catalog" microservice:
 
 ```sh
-$ kubectl run --generator=run-pod/v1 test-$RANDOM --labels=app=inventory,role=web --rm -i -t --image=alpine -- sh
+$ oc run --generator=run-pod/v1 test-$RANDOM --labels=app=inventory,role=web --rm -i -t --image=alpine -- sh
 
 / # nc -v -w 2 db 6379
 db (10.59.242.200:6379) open
@@ -78,7 +78,7 @@ db (10.59.242.200:6379) open
 Pods with labels not matching these microservices will not be able to connect:
 
 ```sh
-$ kubectl run --generator=run-pod/v1 test-$RANDOM --labels=app=other --rm -i -t --image=alpine -- sh
+$ oc run --generator=run-pod/v1 test-$RANDOM --labels=app=other --rm -i -t --image=alpine -- sh
 
 / # nc -v -w 2 db 6379
 nc: db (10.59.252.83:6379): Operation timed out
@@ -88,6 +88,6 @@ nc: db (10.59.252.83:6379): Operation timed out
 
 ### Cleanup
 
-    kubectl delete pod db
-    kubectl delete service db
-    kubectl delete networkpolicy redis-allow-services
+    oc delete pod db
+    oc delete service db
+    oc delete networkpolicy redis-allow-services
