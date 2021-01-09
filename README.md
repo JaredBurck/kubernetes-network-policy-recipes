@@ -68,5 +68,3 @@ Originally created by Ahmet Alp Balkan ([@ahmetb](https://twitter.com/ahmetb)).
 Copyright 2017, Google Inc. Distributed under Apache License Version 2.0 ,see [LICENSE](LICENSE) for details.
 
 Disclaimer: This is not an official Google or Red Hat product.
-
-![Stargazers over time](https://starcharts.herokuapp.com/ahmetb/kubernetes-networkpolicy-tutorial.svg)
