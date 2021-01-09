@@ -7,10 +7,6 @@
 - Useful for restricting outbound traffic of single-instance databases and
   datastores.
 
-> **NOTE:** If you are using Google Kubernetes Engine (GKE), make sure you have
-> at least `1.8.4-gke.0` master and nodes version to be able to use egress
-> policies.
-
 ## Example
 
 Run a web application with `app=web` label:
