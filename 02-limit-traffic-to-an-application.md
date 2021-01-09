@@ -3,7 +3,7 @@
 You can create Networking Policies allowing traffic from only
 certain Pods.
 
-**Use Case:**
+## 💡 Use Cases
 
 - Restrict traffic to a service only to other microservices that need
   to use it.
@@ -44,7 +44,7 @@ $ oc apply -f api-allow.yaml
 networkpolicy "api-allow" created
 ```
 
-### Try it out
+## Try it out
 
 Test the Network Policy is **blocking** the traffic, by running a Pod without the `app=bookstore` label:
 
@@ -67,7 +67,7 @@ $ oc run --generator=run-pod/v1 test-$RANDOM --rm -i -t --image=alpine --labels 
 
 Traffic is allowed.
 
-### Cleanup
+## Cleanup
 
 ```sh
 oc delete pod apiserver

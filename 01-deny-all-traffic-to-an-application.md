@@ -3,7 +3,7 @@
 This NetworkPolicy will drop all traffic to pods of an
 application, selected using Pod Selectors.
 
-**Use Cases:**
+## 💡 Use Cases
 
 - It’s very common: To start whitelisting the traffic using
   Network Policies, first you need to blacklist the traffic
@@ -67,7 +67,7 @@ Traffic dropped!
 
 -----
 
-### Remarks
+## Remarks
 
 In the manifest above, we target Pods with `app=web` label to police the
 network. This manifest file is missing the `spec.ingress` field. Therefore it is
@@ -80,7 +80,7 @@ If there is at least one NetworkPolicy with a rule allowing the traffic, it
 means the traffic will be routed to the pod regardless of the policies blocking
 the traffic.
 
-### Cleanup
+## Cleanup
 
 ```sh
 oc delete pod web

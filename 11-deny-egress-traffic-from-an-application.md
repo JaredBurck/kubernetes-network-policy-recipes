@@ -1,6 +1,6 @@
-## DENY egress traffic from an application
+# DENY egress traffic from an application
 
-**Use Cases:**
+## 💡 Use Cases
 
 - You want to prevent an application from establishing any connections to
   outside of the Pod.
@@ -46,7 +46,7 @@ oc apply -f foo-deny-egress.yaml
 networkpolicy "foo-deny-egress" created
 ```
 
-### Try it out
+## Try it out
 
 Run a pod with label `app=foo`, and try to connect to the `web` service:
 

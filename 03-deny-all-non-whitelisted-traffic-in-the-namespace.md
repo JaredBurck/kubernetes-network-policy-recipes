@@ -1,12 +1,16 @@
 # DENY all non-whitelisted traffic to a namespace
 
-💡 **Use Case:** This is a fundamental policy, blocking all cross-pod networking other
+## 💡 Use Case
+
+This is a fundamental policy, blocking all cross-pod networking other
 than the ones whitelisted via the other Network Policies you deploy.
 
 Consider applying this manifest to any namespace you deploy
 workloads to (anything but `kube-system`).
 
-💡 **Best Practice:**  This policy will give you a default "deny all" functionality.
+## 💡 Best Practice
+
+This policy will give you a default "deny all" functionality.
 This way, you can clearly identify which components have dependency on
 which components and deploy Network Policies which can be translated to dependency
 graphs between components.
@@ -43,7 +47,7 @@ $ oc apply -f default-deny-all.yaml
 networkpolicy "default-deny-all" created
 ```
 
-### Cleanup
+## Cleanup
 
 ```sh
 oc delete networkpolicy default-deny-all

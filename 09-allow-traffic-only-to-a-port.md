@@ -6,7 +6,7 @@ ingress rules, the rule applies to all ports.
 
 A port may be either a numerical or named port on a pod.
 
-**Use Cases** &nbsp;
+## 💡 Use Case
 
 - Allow monitoring system to collect the metrics by querying the diagnostics
   port of your application, without giving it access to the rest of the
@@ -73,7 +73,7 @@ This network policy will:
 - Allow traffic on port `5000` from pods with label
   `role=monitoring` in the same namespace.
 
-### Try it out
+## Try it out
 
 Run a pod with no custom labels, observe the traffic to ports
 5000 and 8000 are blocked:
@@ -101,7 +101,7 @@ go.goroutines=5
 go.cpus=1
 ```
 
-### Cleanup
+## Cleanup
 
 ```sh
 oc delete pod apiserver

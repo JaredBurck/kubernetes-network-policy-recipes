@@ -2,7 +2,7 @@
 
 _(a.k.a LIMIT traffic to pods in the cluster)_
 
-**Use Cases:**
+## 💡 Use Case
 
 - You want to prevent certain type of applications from establishing connections
   to the external networks.

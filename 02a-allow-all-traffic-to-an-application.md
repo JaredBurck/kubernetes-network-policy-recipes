@@ -1,6 +1,8 @@
 # ALLOW all traffic to an application
 
-**Use Case:** After applying a
+## 💡 Use Case
+
+After applying a
 [deny-all](01-deny-all-traffic-to-an-application.md) policy which blocks all
 non-whitelisted traffic to the application, now you have to allow access to an
 application from all pods in the current namespace.
@@ -58,7 +60,7 @@ Also apply the [`web-deny-all`
 policy](01-deny-all-traffic-to-an-application.md). This way you can validate
 that applying `web-allow-all` will make the `web-deny-all` void.
 
-### Try it out
+## Try it out
 
 ```sh
     $ oc run --generator=run-pod/v1 test-$RANDOM --rm -i -t --image=alpine -- sh
@@ -70,7 +72,7 @@ that applying `web-allow-all` will make the `web-deny-all` void.
 
 Traffic is allowed.
 
-### Cleanup
+## Cleanup
 
 ```sh
 oc delete pod,service web

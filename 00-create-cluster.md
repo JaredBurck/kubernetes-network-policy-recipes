@@ -10,7 +10,7 @@ such as Weave Net or Calico.
 
 To create a OpenShift cluster named `ocp4` with Network Policy feature enabled, run:
 
-    openshift-install create cluster --dir=ocp4-sbx
+    openshift-install create cluster --dir=ocp4-dev
 
 This will create a 6-node OpenShift cluster on your cloud of choice with Network
 Policy feature enabled and no policies applied out of the box allowing all
@@ -18,6 +18,6 @@ communications.
 
 Once you complete this tutorial, you can delete the cluster by running:
 
-    openshift-install delete cluster --dir=np-lab
+    openshift-install delete cluster --dir=ocp4-dev
 
 [ocp]: https://www.openshift.com/try

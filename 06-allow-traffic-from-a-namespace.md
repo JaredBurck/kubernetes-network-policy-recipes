@@ -4,7 +4,7 @@ This policy is similar to [allowing traffic from all
 namespaces](05-allow-traffic-from-all-namespaces.md) but shows how you can
 choose particular namespaces.
 
-**Use Case:**
+## 💡 Use Cases
 
 - Restrict traffic to a production database only to namespaces where production
   workloads are deployed.
@@ -65,7 +65,7 @@ $ oc apply -f web-allow-prod.yaml
 networkpolicy "web-allow-prod" created
 ```
 
-### Try it out
+## Try it out
 
 Query this web server from `dev` namespace, observe it is blocked:
 
@@ -91,7 +91,7 @@ If you don't see a command prompt, try pressing enter.
 (traffic allowed)
 ```
 
-### Cleanup
+## Cleanup
 
 ```sh
 oc delete networkpolicy web-allow-prod

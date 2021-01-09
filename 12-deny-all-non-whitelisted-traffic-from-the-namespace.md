@@ -1,13 +1,17 @@
 # DENY all non-whitelisted traffic from a namespace
 
-💡 **Use Case:** This is a fundamental policy, blocking all outgoing (egress)
+## 💡 Use Case
+
+This is a fundamental policy, blocking all outgoing (egress)
 traffic from a namespace by default (including DNS resolution). After deploying
 this, you can deploy Network Policies that allow the specific outgoing traffic.
 
 Consider applying this manifest to any namespace you deploy workloads to
 (except `kube-system`).
 
-💡 **Best Practice:**  This policy will give you a default "deny all"
+## 💡 Best Practice
+
+This policy will give you a default "deny all"
 functionality. This way, you can clearly identify which components have
 dependency on which components and deploy Network Policies which can be
 translated to dependency graphs between components.
@@ -42,7 +46,7 @@ $ oc apply -f default-deny-all-egress.yaml
 networkpolicy "default-deny-all-egress" created
 ```
 
-### Cleanup
+## Cleanup
 
 ```sh
 oc delete networkpolicy default-deny-all-egress

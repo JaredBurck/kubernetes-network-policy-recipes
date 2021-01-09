@@ -2,7 +2,7 @@
 
 NetworkPolicy lets you define multiple pod selectors to allow traffic from.
 
-**Use Case** &nbsp;
+## 💡 Use Case
 
 - Create a combined NetworkPolicy that has the list of microservices that
   are allowed to connect to an application.
@@ -65,7 +65,7 @@ Note that:
 - This means the pods selected by the selectors are combined
   are whitelisted altogether.
 
-### Try it out
+## Try it out
 
 Run a pod that looks like the "catalog" microservice:
 
@@ -89,7 +89,7 @@ nc: db (10.59.252.83:6379): Operation timed out
 (traffic blocked)
 ```
 
-### Cleanup
+## Cleanup
 
 ```sh
 oc delete pod db

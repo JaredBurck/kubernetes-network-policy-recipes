@@ -6,7 +6,7 @@ You can configure a NetworkPolicy to **deny all the traffic from other
 namespaces while allowing all the traffic coming from the same namespace** the
 pod deployed to.
 
-**Use Cases** &nbsp;
+## 💡 Use Cases
 
 - You do not want deployments in `test` namespace to accidentally
   send traffic to other services or databases in `prod` namespace.
@@ -57,7 +57,7 @@ Note a few things about this manifest:
 - it allows traffic from ALL pods in the `secondary` namespace, as
    `spec.ingress.from.podSelector` is empty and therefore selects all pods.
 
-### Try it out
+## Try it out
 
 Query this web service from the `default` namespace:
 
@@ -78,7 +78,7 @@ $ oc run --generator=run-pod/v1 test-$RANDOM --namespace=secondary --rm -i -t --
 <html>
 ```
 
-### Cleanup
+## Cleanup
 
     oc delete pod web -n secondary
     oc delete service web -n secondary

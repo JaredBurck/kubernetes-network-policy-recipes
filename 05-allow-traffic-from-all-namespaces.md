@@ -3,7 +3,7 @@
 This NetworkPolicy will allow traffic from all pods in all namespaces
 to a particular application.
 
-**Use Case:**
+## 💡 Use Case
 
 - You have a common service or a database which is used by deployments in
   different namespaces.
@@ -64,7 +64,7 @@ Note a few things about this NetworkPolicy manifest:
 >
 > However, prefer the syntax in the full manifest clear expression of intent.
 
-### Try it out
+## Try it out
 
 Create a new namespace called `secondary` and query this web service in the `default` namespace:
 
@@ -80,7 +80,7 @@ $ oc run --generator=run-pod/v1 test-$RANDOM --namespace=secondary --rm -i -t --
 
 Similarly, it also works if you query it from any pod deployed to `bar`.
 
-### Cleanup
+## Cleanup
 
 ```sh
 oc delete pod web -n default

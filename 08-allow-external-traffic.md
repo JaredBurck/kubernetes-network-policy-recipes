@@ -3,7 +3,7 @@
 This Network Policy enables external clients from the public Internet directly
 or via a Load Balancer to access to the pod.
 
-**Use Cases:**
+## 💡 Use Case
 
 - You need to expose the pods to the public Internet in a namespace [denying all
   non-whitelisted
@@ -50,7 +50,7 @@ networkpolicy "web-allow-external" created
 Visit the `http://[EXTERNAL-IP]` on your browser again and verify it still
 works.
 
-### Remarks
+## Remarks
 
 This manifest specifies one ingress rule for the `app=web` pods. Since it does
 not specify a particular `podSelector` or `namespaceSelector`, it allows traffic
@@ -66,7 +66,7 @@ such as:
     from: []
 ```
 
-### Cleanup
+## Cleanup
 
 ```sh
 oc delete pod web

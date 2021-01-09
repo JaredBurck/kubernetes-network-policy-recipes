@@ -50,7 +50,7 @@ $ oc apply -f web-allow-all-ns-monitoring.yaml
 networkpolicy.networking.k8s.io/web-allow-all-ns-monitoring created
 ```
 
-### Try it out
+## Try it out
 
 Query this web server from `default` namespace, *without* labelling the application `type=monitoring`, observe it is **blocked**:
 
@@ -98,7 +98,7 @@ If you don't see a command prompt, try pressing enter.
 (traffic allowed)
 ```
 
-### Cleanup
+## Cleanup
 
 ```sh
 oc delete networkpolicy web-allow-all-ns-monitoring
