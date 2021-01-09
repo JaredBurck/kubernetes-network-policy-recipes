@@ -1,19 +1,24 @@
+# OpenShift Network Policy Recipes
+
 ![You can get stuff like this](img/1.gif)
 _You can get stuff like this with Network Policies..._
 
-# OpenShift Network Policy Recipes
+## Overview
+
+This repository consists of two branches:
+
+1. `ocp4-recipes` branch is based on and updated from the `upstream-k8s-recipes` branch but with OpenShift examples, use cases, and scenarios.
+2. `upstream-k8s-recipes` branch tracks the upstream (forked) repository for any changes and updates. Kubernetes & GKE are used in these examples.
 
 This repository contains various use cases of Kubernetes
 [Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/)
-and sample YAML files to leverage in your setup. If you ever wondered
-how to drop/restrict traffic to applications running on Kubernetes, read on.
+and sample YAML files to leverage in your OpenShift cluster. If you have ever wondered
+how to drop/restrict traffic to applications running on OpenShift, read on.
 
-Easiest way to try out Network Policies is to create a new [Google Kubernetes
-Engine](https://cloud.google.com/kubernetes-engine) cluster. Applying Network
-Policies on your existing cluster can disrupt the networking. At the time of
-writing, most cloud providers do not provide built-in network policy support.
+Easiest way to try out Network Policies is to create a new [Red Hat OpenShift 4](https://www.openshift.com/try) cluster. Applying Network
+Policies on your existing cluster can disrupt the networking.
 
-If you are not familiar with Network Policies at all, I recommend reading my
+If you are just getting started with Network Policies and are looking to learn more, I highly recommend reading Ahmet Alp Balkan's ([@ahmetb](https://twitter.com/ahmetb))
 [Securing Kubernetes Cluster Networking](https://ahmet.im/blog/kubernetes-network-policy/)
 article first.
 
@@ -21,8 +26,8 @@ article first.
 
 > It is really recommended [to watch this KubeCon talk on Network
 Policies](https://www.youtube.com/watch?v=3gGpMmYeEO8) for a deeper
-understanding of this feature. It will also help you understand this
-repo better.
+understanding of this feature. It will also help you understand the
+origins and foundations of this repo better.
 
 - [Create a cluster](00-create-cluster.md)
 
