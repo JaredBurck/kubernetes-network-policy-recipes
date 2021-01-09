@@ -96,3 +96,5 @@ oc delete pod db
 oc delete service db
 oc delete networkpolicy redis-allow-services
 ```
+
+[<---BACK](09-allow-traffic-only-to-a-port.md) | [NEXT--->](11-deny-egress-traffic-from-an-application.md)

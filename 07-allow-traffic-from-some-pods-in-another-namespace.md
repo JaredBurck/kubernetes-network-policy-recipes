@@ -106,3 +106,5 @@ oc delete namespace other
 oc delete pod web
 oc delete service web
 ```
+
+[<---BACK](06-allow-traffic-from-a-namespace.md) | [NEXT--->](08-allow-external-traffic.md)

@@ -108,3 +108,5 @@ oc delete pod apiserver
 oc delete service apiserver
 oc delete networkpolicy api-allow-5000
 ```
+
+[<---BACK](08-allow-external-traffic.md) | [NEXT--->](10-allowing-traffic-with-multiple-selectors.md)

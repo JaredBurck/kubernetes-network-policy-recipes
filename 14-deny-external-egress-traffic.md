@@ -95,3 +95,5 @@ cannot establish a connection. Effectively, external traffic is blocked.
 oc delete pod,service web
 oc delete networkpolicy foo-deny-external-egress
 ```
+
+[<---BACK](12-deny-all-non-whitelisted-traffic-from-the-namespace.md)

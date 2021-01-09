@@ -73,3 +73,5 @@ oc delete pod web
 oc delete service web
 oc delete networkpolicy web-allow-external
 ```
+
+[<---BACK](07-allow-traffic-from-some-pods-in-another-namespace.md) | [NEXT--->](09-allow-traffic-only-to-a-port.md)

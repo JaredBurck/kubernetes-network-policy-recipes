@@ -78,3 +78,5 @@ Traffic is allowed.
 oc delete pod,service web
 oc delete networkpolicy web-allow-all web-deny-all
 ```
+
+[<---BACK](02-limit-traffic-to-an-application.md) | [NEXT--->](03-deny-all-non-whitelisted-traffic-in-the-namespace.md)

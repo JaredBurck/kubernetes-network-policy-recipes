@@ -88,3 +88,5 @@ oc delete service web -n default
 oc delete networkpolicy web-allow-all-namespaces -n default
 oc delete namespace secondary
 ```
+
+[<---BACK](04-deny-traffic-from-other-namespace.md) | [NEXT--->](06-allow-traffic-from-a-namespace.md)

@@ -118,3 +118,5 @@ but any host that serves traffic over port `53`.
 oc delete pod,service web
 oc delete networkpolicy foo-deny-egress
 ```
+
+[<---BACK](10-allowing-traffic-with-multiple-selectors.md) | [NEXT--->](12-deny-all-non-whitelisted-traffic-from-the-namespace.md)

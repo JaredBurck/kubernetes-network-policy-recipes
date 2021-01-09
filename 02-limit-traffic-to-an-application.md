@@ -74,3 +74,5 @@ oc delete pod apiserver
 oc delete service apiserver
 oc delete networkpolicy api-allow
 ```
+
+[<---BACK](01-deny-all-traffic-to-an-application.md) | [NEXT--->](02a-allow-all-traffic-to-an-application.md)

@@ -52,3 +52,5 @@ networkpolicy "default-deny-all" created
 ```sh
 oc delete networkpolicy default-deny-all
 ```
+
+[<---BACK](02a-allow-all-traffic-to-an-application.md) | [NEXT--->](04-deny-traffic-from-other-namespace.md)

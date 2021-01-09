@@ -80,7 +80,11 @@ $ oc run --generator=run-pod/v1 test-$RANDOM --namespace=secondary --rm -i -t --
 
 ## Cleanup
 
-    oc delete pod web -n secondary
-    oc delete service web -n secondary
-    oc delete networkpolicy deny-from-other-namespaces -n secondary
-    oc delete namespace secondary
+```sh
+oc delete pod web -n secondary
+oc delete service web -n secondary
+oc delete networkpolicy deny-from-other-namespaces -n secondary
+oc delete namespace secondary
+```
+
+[<---BACK](03-deny-all-non-whitelisted-traffic-in-the-namespace.md) | [NEXT--->](05-allow-traffic-from-al-namespaces.md)

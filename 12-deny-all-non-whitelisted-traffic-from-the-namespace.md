@@ -51,3 +51,5 @@ networkpolicy "default-deny-all-egress" created
 ```sh
 oc delete networkpolicy default-deny-all-egress
 ```
+
+[<---BACK](11-deny-egress-traffic-from-an-application.md) | [NEXT--->](14-deny-external-egress-traffic.md)
