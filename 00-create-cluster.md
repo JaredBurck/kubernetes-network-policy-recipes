@@ -21,3 +21,7 @@ Once you complete this tutorial, you can delete the cluster by running:
     openshift-install delete cluster --dir=ocp4-dev
 
 [ocp]: https://www.openshift.com/try
+
+|          |          |
+|----------|----------|
+| <---BACK | [NEXT--->](link:01-deny-all-traffic-to-an-application.md) |
