@@ -22,6 +22,4 @@ Once you complete this tutorial, you can delete the cluster by running:
 
 [ocp]: https://www.openshift.com/try
 
-|          |          |
-|----------|----------|
-| <---BACK | [NEXT--->](link:01-deny-all-traffic-to-an-application.md) |
+| <---BACK | [NEXT--->](01-deny-all-traffic-to-an-application.md) |
