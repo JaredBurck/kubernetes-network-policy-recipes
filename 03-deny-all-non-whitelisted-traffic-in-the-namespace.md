@@ -53,4 +53,4 @@ networkpolicy "default-deny-all" created
 oc delete networkpolicy default-deny-all
 ```
 
-[<---BACK](02a-allow-all-traffic-to-an-application.md) | [NEXT--->](04-deny-traffic-from-other-namespace.md)
+[<---BACK](02a-allow-all-traffic-to-an-application.md) | [NEXT--->](04-deny-traffic-from-other-namespaces.md)

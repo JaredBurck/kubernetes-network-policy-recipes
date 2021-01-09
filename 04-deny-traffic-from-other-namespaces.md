@@ -87,4 +87,4 @@ oc delete networkpolicy deny-from-other-namespaces -n secondary
 oc delete namespace secondary
 ```
 
-[<---BACK](03-deny-all-non-whitelisted-traffic-in-the-namespace.md) | [NEXT--->](05-allow-traffic-from-al-namespaces.md)
+[<---BACK](03-deny-all-non-whitelisted-traffic-in-the-namespace.md) | [NEXT--->](05-allow-traffic-from-all-namespaces.md)

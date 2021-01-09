@@ -100,4 +100,4 @@ oc delete service web
 oc delete namespace {prod,dev}
 ```
 
-[<---BACK](06-allow-traffic-from-a-namespace.md) | [NEXT--->](07-allow-traffic-from-some-pods-in-another-namespace.md)
+[<---BACK](05-allow-traffic-from-all-namespaces.md) | [NEXT--->](07-allow-traffic-from-some-pods-in-another-namespace.md)
