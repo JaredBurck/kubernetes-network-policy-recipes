@@ -89,4 +89,4 @@ On OpenShift, DNS runs in **`openshift-dns`**. If your BANP/ANP allows or denies
 - [OVN-Kubernetes Network Policy](https://ovn-kubernetes.io/features/network-security-controls/network-policy/)
 - [Kubernetes Admin and Baseline Admin Network Policy](https://ovn-kubernetes.io/features/network-security-controls/admin-network-policy/)
 
-[<---BACK to README](../README.md)
+[<---BACK to README](README.md)
