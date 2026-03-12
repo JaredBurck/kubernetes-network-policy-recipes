@@ -1,6 +1,6 @@
 # OpenShift Virtualization: Network Policies for VM workloads
 
-This document covers NetworkPolicy use cases for [OpenShift Virtualization](https://docs.openshift.com/container-platform/stable/virt/about-virt.html) (KubeVirt/CNV) and VM workloads.
+This document covers NetworkPolicy use cases for [OpenShift Virtualization](https://docs.redhat.com/en/documentation/red_hat_openshift_virtualization/latest) (KubeVirt/CNV) and VM workloads.
 
 ## Scope
 
@@ -57,7 +57,7 @@ spec:
       endPort: 49215
 ```
 
-Exact ports depend on your OCP/KubeVirt version; consult [OpenShift Virtualization documentation](https://docs.openshift.com/container-platform/stable/virt/virt_networking/virt-network-policies.html).
+Exact ports depend on your OCP/KubeVirt version; consult [OpenShift Virtualization documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/virtualization/networking).
 
 ### Multus and secondary networks
 
@@ -65,7 +65,8 @@ NetworkPolicy applies to the **default pod network**. If you use Multus and seco
 
 ## References
 
-- [OpenShift Virtualization – Network policies](https://docs.openshift.com/container-platform/stable/virt/virt_networking/virt-network-policies.html)
-- [KubeVirt networking](https://kubevirt.io/user-guide/docs/latest/administration/networking.html)
+- [OpenShift Virtualization – Network policies](https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/virtualization/networking#primary-udn-config)
+- [KubeVirt networking](https://kubevirt.io/user-guide/network/networkpolicy/)
+- [KubeVirt NetworkPolicies secondary networks - blog](https://kubevirt.io/2023/OVN-kubernetes-secondary-networks-policies.html)
 
 [<---BACK to README](../README.md)
