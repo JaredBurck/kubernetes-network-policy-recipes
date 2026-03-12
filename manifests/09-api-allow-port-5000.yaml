@@ -1,0 +1,16 @@
+# Recipe 09: ALLOW traffic only to port 5000 from role=monitoring pods
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: api-allow-5000
+spec:
+  podSelector:
+    matchLabels:
+      app: apiserver
+  ingress:
+  - ports:
+    - port: 5000
+    from:
+    - podSelector:
+        matchLabels:
+          role: monitoring

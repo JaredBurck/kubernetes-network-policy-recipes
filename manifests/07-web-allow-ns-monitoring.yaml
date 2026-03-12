@@ -1,0 +1,20 @@
+# Recipe 07: ALLOW traffic from pods with type=monitoring in namespaces with team=operations
+# Requires K8s 1.11+ and CNI support for combined podSelector + namespaceSelector.
+# Create namespace: oc create namespace other && oc label namespace/other team=operations
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: web-allow-all-ns-monitoring
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      app: web
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          team: operations
+      podSelector:
+        matchLabels:
+          type: monitoring

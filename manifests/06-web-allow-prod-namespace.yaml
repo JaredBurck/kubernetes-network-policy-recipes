@@ -1,0 +1,15 @@
+# Recipe 06: ALLOW traffic from a specific namespace (purpose=production)
+# Create namespace and label: oc create namespace prod && oc label namespace/prod purpose=production
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: web-allow-prod
+spec:
+  podSelector:
+    matchLabels:
+      app: web
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          purpose: production
