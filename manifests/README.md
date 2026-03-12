@@ -29,4 +29,4 @@ Apply from the appropriate namespace; adjust `metadata.namespace` and selectors 
 
 - **Dry-run (client):** `./validate-manifests.sh` or run `oc apply -f <file> --dry-run=client` for each YAML.
 - **Dry-run (server):** Use a test project and apply with the correct namespace (files that set `metadata.namespace: default` must be applied to `default` or the YAML adjusted).
-- **Live tests:** See [../docs/VALIDATION_REPORT.md](../docs/VALIDATION_REPORT.md) for how each recipe was tested on a cluster.
+- **Live tests:** All recipes (01–14, 02a, 08) and variants have been live-tested on an OpenShift cluster. See [../docs/VALIDATION_REPORT.md](../docs/VALIDATION_REPORT.md) for results and steps.

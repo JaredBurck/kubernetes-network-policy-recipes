@@ -23,7 +23,7 @@ Policies on your existing cluster can disrupt the networking.
 - **DNS:** On OpenShift 4, CoreDNS runs in the **`openshift-dns`** namespace (not `kube-system`). Egress policies that allow DNS by port 53 to any destination work on both Kubernetes and OCP; if you restrict DNS to a specific namespace, use `openshift-dns` on OCP. See recipes 11, 12, and 14 for OCP notes.
 - **Validate before production:** Test policies on a non-production cluster or namespace first; default-deny policies can block DNS and break workloads.
 
-**Standalone manifests:** YAML files for key policies are in [manifests/](manifests/) for GitOps or `kubectl apply --dry-run=client` validation.
+**Standalone manifests:** YAML for every recipe is in [manifests/](manifests/). Run `./manifests/validate-manifests.sh` for client dry-run validation. See [manifests/README.md](manifests/README.md) for the full index.
 
 If you are just getting started with Network Policies and are looking to learn more, I highly recommend reading Ahmet Alp Balkan's ([@ahmetb](https://twitter.com/ahmetb))
 [Securing Kubernetes Cluster Networking](https://ahmet.im/blog/kubernetes-network-policy/)
@@ -71,10 +71,13 @@ origins and foundations of this repo better.
 - (Not yet documented) ALLOW traffic only to Pods in a namespace
 - [LIMIT egress traffic to the cluster (DENY external egress traffic)](14-deny-external-egress-traffic.md)
 
-## OpenShift Virtualization and Admin policies
+## OpenShift Virtualization
 
-- [OpenShift Virtualization: Network policies for VM workloads](docs/15-openshift-virtualization-network-policies.md) — `virt-launcher`, migration, Multus.
-- [AdminNetworkPolicy (ANP) and BaselineAdminNetworkPolicy (BANP) examples](docs/16-admin-network-policy-examples.md) — cluster-scoped policy examples.
+- [Network policies for VM workloads](15-openshift-virtualization-network-policies.md) — `virt-launcher`, migration traffic, Multus/secondary networks.
+
+## AdminNetworkPolicy (ANP) and BaselineAdminNetworkPolicy (BANP)
+
+- [ANP and BANP examples](16-admin-network-policy-examples.md) — cluster-scoped policy examples (Kubernetes 1.27+ / OpenShift).
 
 -----
 
