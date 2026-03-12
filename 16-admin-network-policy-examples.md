@@ -1,6 +1,6 @@
 # AdminNetworkPolicy (ANP) and BaselineAdminNetworkPolicy (BANP) examples
 
-[AdminNetworkPolicy (ANP)](https://kubernetes.io/docs/concepts/services-networking/admin-network-policy/) and [BaselineAdminNetworkPolicy (BANP)](https://kubernetes.io/docs/concepts/services-networking/baseline-admin-network-policy/) are cluster-scoped policies that apply to all namespaces. They require a cluster that supports the [Admin Network Policy API](https://kubernetes.io/docs/concepts/services-networking/admin-network-policy/) (Kubernetes 1.27+ as alpha, or OpenShift with the appropriate feature).
+[AdminNetworkPolicy (ANP)](https://ovn-kubernetes.io/features/network-security-controls/admin-network-policy/#baselineadminnetworkpolicy-sample-api) and [BaselineAdminNetworkPolicy (BANP)](https://ovn-kubernetes.io/features/network-security-controls/admin-network-policy/#baselineadminnetworkpolicy-sample-api) are cluster-scoped policies that apply to all namespaces. They require a cluster that supports the [Admin Network Policy API](https://ovn-kubernetes.io/features/network-security-controls/admin-network-policy/) (Kubernetes 1.27+ as alpha, or OpenShift with the appropriate feature).
 
 **Platform support:** Check your Kubernetes or OpenShift version; ANP/BANP may be in alpha/beta or behind a feature gate. OpenShift 4.x support may vary by version.
 
@@ -85,7 +85,8 @@ On OpenShift, DNS runs in **`openshift-dns`**. If your BANP/ANP allows or denies
 
 ## References
 
-- [Kubernetes Admin Network Policy](https://kubernetes.io/docs/concepts/services-networking/admin-network-policy/)
-- [Kubernetes Baseline Admin Network Policy](https://kubernetes.io/docs/concepts/services-networking/baseline-admin-network-policy/)
+- [Kubernetes Network Policy](https://kubernetes.io/docs/concepts/services-networking/network-policies/)
+- [OVN-Kubernetes Network Policy](https://ovn-kubernetes.io/features/network-security-controls/network-policy/)
+- [Kubernetes Admin and Baseline Admin Network Policy](https://ovn-kubernetes.io/features/network-security-controls/admin-network-policy/)
 
 [<---BACK to README](../README.md)
