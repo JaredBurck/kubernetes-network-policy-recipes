@@ -23,7 +23,7 @@ Create a new namespace called `secondary` and start a web service:
 ```sh
 oc create namespace secondary
 
-oc run --generator=run-pod/v1 web --namespace secondary --image=nginx \
+oc run web --namespace secondary --image=nginx \
     --labels=app=web --expose --port 80
 ```
 
@@ -37,8 +37,7 @@ metadata:
   namespace: secondary
   name: deny-from-other-namespaces
 spec:
-  podSelector:
-    matchLabels:
+  podSelector: {}
   ingress:
   - from:
     - podSelector: {}
@@ -53,7 +52,7 @@ Note a few things about this manifest:
 
 - `namespace: secondary` deploys it to the `secondary` namespace.
 - it applies the policy to ALL pods in `secondary` namespace as the
-  `spec.podSelector.matchLabels` is empty and therefore selects all pods.
+  `spec.podSelector: {}` selects all pods in the namespace.
 - it allows traffic from ALL pods in the `secondary` namespace, as
    `spec.ingress.from.podSelector` is empty and therefore selects all pods.
 
@@ -62,7 +61,7 @@ Note a few things about this manifest:
 Query this web service from the `default` namespace:
 
 ```sh
-$ oc run --generator=run-pod/v1 test-$RANDOM --namespace=default --rm -i -t --image=alpine -- sh
+$ oc run test-$RANDOM --namespace=default --rm -i -t --image=alpine -- sh
 / # wget -qO- --timeout=2 http://web.secondary
 wget: download timed out
 ```
@@ -72,7 +71,7 @@ It blocks the traffic from `default` namespace!
 Any pod in `secondary` namespace should work fine:
 
 ```sh
-$ oc run --generator=run-pod/v1 test-$RANDOM --namespace=secondary --rm -i -t --image=alpine -- sh
+$ oc run test-$RANDOM --namespace=secondary --rm -i -t --image=alpine -- sh
 / # wget -qO- --timeout=2 http://web.secondary
 <!DOCTYPE html>
 <html>

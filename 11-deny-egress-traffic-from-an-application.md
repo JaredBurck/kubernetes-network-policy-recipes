@@ -12,7 +12,7 @@
 Run a web application with `app=web` label:
 
 ```sh
-oc run --generator=run-pod/v1 web --image=nginx --port 80 --expose \
+oc run web --image=nginx --port 80 --expose \
     --labels app=web
 ```
 
@@ -51,7 +51,7 @@ networkpolicy "foo-deny-egress" created
 Run a pod with label `app=foo`, and try to connect to the `web` service:
 
 ```sh
-$ oc run --generator=run-pod/v1 --rm --restart=Never --image=alpine -i -t -l app=foo test -- ash
+$ oc run --rm --restart=Never --image=alpine -i -t -l app=foo test -- ash
 
 / # wget -qO- --timeout 1 http://web:80/
 wget: bad address 'web:80'
@@ -109,8 +109,28 @@ PING google.com (74.125.129.101): 56 data bytes
 / # exit
 ```
 
-Beware that the egress rule above allows Pod to connect not only `kube-dns`,
+Beware that the egress rule above allows Pod to connect not only cluster DNS,
 but any host that serves traffic over port `53`.
+
+### OpenShift 4 (OCP) note
+
+On OpenShift 4, CoreDNS runs in the **`openshift-dns`** namespace (not `kube-system`).
+The examples above allow port 53 to any destination, so DNS works on OCP. If you
+want to restrict egress to only the cluster DNS service, add a rule that targets
+the `openshift-dns` namespace:
+
+```yaml
+  egress:
+  - ports:
+    - port: 53
+      protocol: UDP
+    - port: 53
+      protocol: TCP
+    to:
+    - namespaceSelector:
+        matchLabels:
+          kubernetes.io/metadata.name: openshift-dns
+```
 
 ## Cleanup
 

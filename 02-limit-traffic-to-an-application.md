@@ -16,7 +16,7 @@ certain Pods.
 Suppose your application is a REST API server, marked with labels `app=bookstore` and `role=api`:
 
 ```sh
-oc run --generator=run-pod/v1 apiserver --image=nginx --labels app=bookstore,role=api --expose --port 80
+oc run apiserver --image=nginx --labels app=bookstore,role=api --expose --port 80
 ```
 
 Save the following NetworkPolicy to `api-allow.yaml` to restrict the access
@@ -49,7 +49,7 @@ networkpolicy "api-allow" created
 Test the Network Policy is **blocking** the traffic, by running a Pod without the `app=bookstore` label:
 
 ```sh
-$ oc run --generator=run-pod/v1 test-$RANDOM --rm -i -t --image=alpine -- sh
+$ oc run test-$RANDOM --rm -i -t --image=alpine -- sh
 / # wget -qO- --timeout=2 http://apiserver
 wget: download timed out
 ```
@@ -59,7 +59,7 @@ Traffic is blocked!
 Test the Network Policy is **allowing** the traffic, by running a Pod with the `app=bookstore` label:
 
 ```sh
-$ oc run --generator=run-pod/v1 test-$RANDOM --rm -i -t --image=alpine --labels app=bookstore,role=frontend -- sh
+$ oc run test-$RANDOM --rm -i -t --image=alpine --labels app=bookstore,role=frontend -- sh
 / # wget -qO- --timeout=2 http://apiserver
 <!DOCTYPE html>
 <html><head>

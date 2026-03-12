@@ -19,7 +19,7 @@ A port may be either a numerical or named port on a pod.
 Run a web server deployment called `apiserver`:
 
 ```sh
-oc run --generator=run-pod/v1 apiserver --image=ahmet/app-on-two-ports --labels=app=apiserver
+oc run apiserver --image=ahmet/app-on-two-ports --labels=app=apiserver
 ```
 
 This application returns a hello response to requests on `http://:8000/`
@@ -79,7 +79,7 @@ Run a pod with no custom labels, observe the traffic to ports
 5000 and 8000 are blocked:
 
 ```sh
-$ oc run --generator=run-pod/v1 test-$RANDOM --rm -i -t --image=alpine -- sh
+$ oc run test-$RANDOM --rm -i -t --image=alpine -- sh
 / # wget -qO- --timeout=2 http://apiserver:8001
 wget: download timed out
 
@@ -91,7 +91,7 @@ Run a pod with `role=monitoring` label, observe the traffic to
 port 5000 is allowed, but port 8000 is still not accessible:
 
 ```sh
-$ oc run --generator=run-pod/v1 test-$RANDOM --labels=role=monitoring --rm -i -t --image=alpine -- sh
+$ oc run test-$RANDOM --labels=role=monitoring --rm -i -t --image=alpine -- sh
 / # wget -qO- --timeout=2 http://apiserver:8001
 wget: download timed out
 

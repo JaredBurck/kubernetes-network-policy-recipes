@@ -7,7 +7,7 @@ traffic from a namespace by default (including DNS resolution). After deploying
 this, you can deploy Network Policies that allow the specific outgoing traffic.
 
 Consider applying this manifest to any namespace you deploy workloads to
-(except `kube-system`).
+(except system namespaces such as `kube-system` on Kubernetes or `openshift-*` on OpenShift).
 
 ## 💡 Best Practice
 
@@ -38,6 +38,8 @@ Note a few things about this manifest:
   the policy will be enforced to ALL pods in the `default` namespace.
 - List of `egress` rules is an empty array: This causes all traffic (including
   DNS resolution) to be dropped if it’s originating from Pods in `default`.
+
+**OpenShift 4 (OCP):** After applying this policy, add NetworkPolicies that allow egress to the **`openshift-dns`** namespace (and optionally port 53) so pods can resolve DNS. CoreDNS on OCP runs in `openshift-dns`, not `kube-system`.
 
 Save this manifest to `default-deny-all-egress.yaml` and apply:
 

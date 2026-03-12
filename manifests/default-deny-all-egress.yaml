@@ -1,0 +1,12 @@
+# Recipe 12: DENY all non-whitelisted egress from the namespace
+# On OpenShift, add policies allowing egress to openshift-dns for DNS.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny-all-egress
+  namespace: default
+spec:
+  policyTypes:
+  - Egress
+  podSelector: {}
+  egress: []

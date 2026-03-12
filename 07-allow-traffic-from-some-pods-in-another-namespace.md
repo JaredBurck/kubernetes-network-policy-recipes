@@ -12,7 +12,7 @@ deploy it to make sure it is working correctly.
 Start a `web` application:
 
 ```sh
-oc run --generator=run-pod/v1 web --image=nginx \
+oc run web --image=nginx \
     --labels=app=web --expose --port 80
 ```
 
@@ -55,7 +55,7 @@ networkpolicy.networking.k8s.io/web-allow-all-ns-monitoring created
 Query this web server from `default` namespace, *without* labelling the application `type=monitoring`, observe it is **blocked**:
 
 ```sh
-$ oc run --generator=run-pod/v1 test-$RANDOM --rm -i -t --image=alpine -- sh
+$ oc run test-$RANDOM --rm -i -t --image=alpine -- sh
 If you don't see a command prompt, try pressing enter.
 / # wget -qO- --timeout=2 http://web.default
 wget: download timed out
@@ -66,7 +66,7 @@ wget: download timed out
 Query this web server from `default` namespace, labelling the application `type=monitoring`, observe it is **blocked**:
 
 ```sh
-oc run --generator=run-pod/v1 test-$RANDOM --labels type=monitoring --rm -i -t --image=alpine -- sh
+oc run test-$RANDOM --labels type=monitoring --rm -i -t --image=alpine -- sh
 If you don't see a command prompt, try pressing enter.
 / # wget -qO- --timeout=2 http://web.default
 wget: download timed out
@@ -77,7 +77,7 @@ wget: download timed out
 Query this web server from `other` namespace, *without* labelling the application `type=monitoring`, observe it is **blocked**:
 
 ```sh
-$ oc run --generator=run-pod/v1 test-$RANDOM --namespace=other --rm -i -t --image=alpine -- sh
+$ oc run test-$RANDOM --namespace=other --rm -i -t --image=alpine -- sh
 If you don't see a command prompt, try pressing enter.
 / # wget -qO- --timeout=2 http://web.default
 wget: download timed out
@@ -88,7 +88,7 @@ wget: download timed out
 Query this web server from `other` namespace, labelling the application `type=monitoring`, observe it is **allowed**:
 
 ```sh
-oc run --generator=run-pod/v1 test-$RANDOM --namespace=other --labels type=monitoring --rm -i -t --image=alpine -- sh
+oc run test-$RANDOM --namespace=other --labels type=monitoring --rm -i -t --image=alpine -- sh
 If you don't see a command prompt, try pressing enter.
 / # wget -qO- --timeout=2 http://web.default
 <!DOCTYPE html>

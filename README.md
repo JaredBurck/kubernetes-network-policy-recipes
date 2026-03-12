@@ -8,7 +8,7 @@ _You can get stuff like this with Network Policies..._
 This repository consists of two branches:
 
 1. `ocp4-recipes` branch is based on and updated from the `upstream-k8s-recipes` branch but with OpenShift examples, use cases, and scenarios.
-2. `upstream-k8s-recipes` branch tracks the upstream (forked) repository for any changes and updates. Kubernetes & GKE are used in these examples.
+2. `upstream-k8s-recipes` branch is a **fork** that tracks the [upstream repository](https://github.com/ahmetb/kubernetes-network-policy-recipes) for changes and updates; it is not an exact mirror (content may differ). Kubernetes & GKE are used in those examples.
 
 This repository contains various use cases of Kubernetes
 [Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/)
@@ -17,6 +17,13 @@ how to drop/restrict traffic to applications running on OpenShift, read on.
 
 Easiest way to try out Network Policies is to create a new [Red Hat OpenShift 4](https://www.openshift.com/try) cluster. Applying Network
 Policies on your existing cluster can disrupt the networking.
+
+### Platform notes (OpenShift 4)
+
+- **DNS:** On OpenShift 4, CoreDNS runs in the **`openshift-dns`** namespace (not `kube-system`). Egress policies that allow DNS by port 53 to any destination work on both Kubernetes and OCP; if you restrict DNS to a specific namespace, use `openshift-dns` on OCP. See recipes 11, 12, and 14 for OCP notes.
+- **Validate before production:** Test policies on a non-production cluster or namespace first; default-deny policies can block DNS and break workloads.
+
+**Standalone manifests:** YAML files for key policies are in [manifests/](manifests/) for GitOps or `kubectl apply --dry-run=client` validation.
 
 If you are just getting started with Network Policies and are looking to learn more, I highly recommend reading Ahmet Alp Balkan's ([@ahmetb](https://twitter.com/ahmetb))
 [Securing Kubernetes Cluster Networking](https://ahmet.im/blog/kubernetes-network-policy/)
@@ -30,6 +37,8 @@ understanding of this feature. It will also help you understand the
 origins and foundations of this repo better.
 
 - [Create a cluster](00-create-cluster.md)
+
+**Note:** Examples use `oc run` (or `kubectl run` on the upstream branch) to create temporary pods. The deprecated `--generator=run-pod/v1` flag is omitted on recent OpenShift/Kubernetes versions.
 
 ## Basics
 
@@ -58,9 +67,14 @@ origins and foundations of this repo better.
 
 - [DENY egress traffic from an application](11-deny-egress-traffic-from-an-application.md)
 - [DENY all non-whitelisted egress traffic in a namespace](12-deny-all-non-whitelisted-traffic-from-the-namespace.md)
-- 🔜 LIMIT egress traffic from an application to some pods
-- 🔜 ALLOW traffic only to Pods in a namespace
+- (Not yet documented) LIMIT egress traffic from an application to some pods
+- (Not yet documented) ALLOW traffic only to Pods in a namespace
 - [LIMIT egress traffic to the cluster (DENY external egress traffic)](14-deny-external-egress-traffic.md)
+
+## OpenShift Virtualization and Admin policies
+
+- [OpenShift Virtualization: Network policies for VM workloads](docs/15-openshift-virtualization-network-policies.md) — `virt-launcher`, migration, Multus.
+- [AdminNetworkPolicy (ANP) and BaselineAdminNetworkPolicy (BANP) examples](docs/16-admin-network-policy-examples.md) — cluster-scoped policy examples.
 
 -----
 

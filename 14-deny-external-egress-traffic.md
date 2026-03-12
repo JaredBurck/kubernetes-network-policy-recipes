@@ -7,6 +7,8 @@ _(a.k.a LIMIT traffic to pods in the cluster)_
 - You want to prevent certain type of applications from establishing connections
   to the external networks.
 
+**Platform note:** Ensure your OpenShift and CNI (e.g. OpenShift SDN, OVN-Kubernetes) support egress NetworkPolicy.
+
 ## Example
 
 Save this policy to `foo-deny-external-egress.yaml`:
@@ -44,11 +46,16 @@ Few remarks about this policy:
   - And since they are not listed, traffic to the IP addresses outside the cluster
     are denied.
 
+**OpenShift 4 (OCP):** On OCP, CoreDNS runs in **`openshift-dns`** (not `kube-system`).
+The rule above allows DNS (port 53) to any destination, so it works on OCP. To
+restrict DNS egress to only the cluster DNS, you can replace the port-only rule
+with a rule that includes `to: - namespaceSelector: matchLabels: kubernetes.io/metadata.name: openshift-dns` for the DNS ports.
+
 Now apply it to the cluster:
 
 ```sh
 oc apply -f foo-deny-external-egress.yaml
-networkpolicy "foo-deny-egress" created
+networkpolicy "foo-deny-external-egress" created
 ```
 
 ## Try it out
@@ -56,14 +63,14 @@ networkpolicy "foo-deny-egress" created
 Run a web application named `web`:
 
 ```sh
-oc run --generator=run-pod/v1 web --image=nginx --port 80 --expose \
+oc run web --image=nginx --port 80 --expose \
     --labels app=web
 ```
 
 Run a pod with label `app=foo`. The policy will be enforced on this pod:
 
 ```sh
-$ oc run --generator=run-pod/v1 --rm --restart=Never --image=alpine -i -t -l app=foo test -- ash
+$ oc run --rm --restart=Never --image=alpine -i -t -l app=foo test -- ash
 
 / # wget -O- --timeout 1 http://web:80
 Connecting to web (10.59.245.232:80)

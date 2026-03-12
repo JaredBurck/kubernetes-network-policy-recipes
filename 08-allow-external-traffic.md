@@ -16,7 +16,7 @@ or via a Load Balancer to access to the pod.
 Run a web server and expose it to the internet with a Load Balancer:
 
 ```sh
-oc run --generator=run-pod/v1 web --image=nginx \
+oc run web --image=nginx \
     --labels=app=web --port 80
 
 oc expose pod/web --type=LoadBalancer
